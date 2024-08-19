@@ -7,7 +7,7 @@ Python 3.12.4
 ### Install pipenv
 
 ```
-brew install pipenv 
+brew install pipenv [For MAC]
 apt-get install pipenv
 ```
 
