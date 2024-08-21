@@ -9,6 +9,7 @@ openai = "*"
 gradio = "*"
 python-dotenv = "*"
 langchain-community = "*"
+singleton-decorator = "*"
 
 [dev-packages]
 
