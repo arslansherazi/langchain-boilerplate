@@ -1,16 +1,11 @@
 from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage
+
+from src.llms.base import BaseLLM
+from src.commons.constants import OpenAiModel
 
 
-class OpenAiLLM:
+class OpenAiLLM(BaseLLM):
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-3.5-turbo")
-
-    def get_response(self, query: str) -> str:
-        messages = [
-            HumanMessage(content=query)
-        ]
-        result = self.llm(messages)
-        results_data = result.content
-        return results_data
+        super().__init__()
+        self.llm = ChatOpenAI(model=OpenAiModel.GPT_35_TURBO.value)
     
