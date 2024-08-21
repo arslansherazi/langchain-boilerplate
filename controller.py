@@ -1,7 +1,7 @@
 import gradio as gr
 from dotenv import load_dotenv
 
-from llms.openai.llm import OpenAiLLM
+from src.llms.openai import OpenAiLLM
 
 load_dotenv()
 
