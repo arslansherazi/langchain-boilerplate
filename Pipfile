@@ -10,6 +10,7 @@ gradio = "*"
 python-dotenv = "*"
 langchain-community = "*"
 singleton-decorator = "*"
+langchain-openai = "*"
 
 [dev-packages]
 

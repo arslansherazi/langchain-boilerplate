@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 from src.llms.base import BaseLLM
 from src.commons.constants import OpenAiModel
