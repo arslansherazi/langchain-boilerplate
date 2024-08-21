@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import time
 
 from commons.constants import (
-    CHATBOT_NAME, USER_QUERY_PLACEHOLDER, SEND_BTN_TEXT, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
+    CHATBOT_NAME, USER_QUERY_PLACEHOLDER, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
 )
 from src.llms.openai import OpenAiLLM
 
@@ -37,7 +37,7 @@ class ChatbotController:
             chatbot = gr.Chatbot(elem_id="chatbox", height=800)
 
             with gr.Row(visible=True):
-                with gr.Column(scale=3, elem_id="user_input_container"):
+                with gr.Column():
                     user_input = gr.Textbox(
                         show_label=False,
                         placeholder=USER_QUERY_PLACEHOLDER,
@@ -46,8 +46,6 @@ class ChatbotController:
                         autoscroll=False,
                         elem_id="user_input"
                     )
-                with gr.Column(scale=1):
-                    submit_button = gr.Button(SEND_BTN_TEXT, elem_id="send_button")
 
             def submit_message(query, chat_history):
                 """
@@ -71,14 +69,7 @@ class ChatbotController:
                     chat_history[-1] = (query, bot_response)
                     yield chat_history, ""
 
-            # Connect the button click and input submission to the submit_message function
-            submit_button.click(
-                fn=submit_message,
-                inputs=[user_input, chatbot],
-                outputs=[chatbot, user_input],
-                queue=True,
-            )
-
+            # Connect input submission to the submit_message function
             user_input.submit(
                 fn=submit_message,
                 inputs=[user_input, chatbot],

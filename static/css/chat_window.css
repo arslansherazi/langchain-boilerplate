@@ -3,17 +3,30 @@
     box-shadow: none !important;
 }
 
-#user_input_container {
-    background-color: #e5e5e5;
-    border-radius: 80px;
+#user_input {
+    background-color: #F8F9FA;
+    border-radius: 100px;
+    border: 1px #F8F9FA;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 3px;
 }
 
-#user_input {
-    background-color: #e5e5e5;
-    border-radius: 80px;
+input {
+    background-color: #F8F9FA;
+    border: 1px #F8F9FA;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 #send_button {
+    background-color: #e5e5e5;
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
