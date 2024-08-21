@@ -1,12 +1,17 @@
 import gradio as gr
+from dotenv import load_dotenv
+
+from llms.openai.llm import OpenAiLLM
+
+load_dotenv()
 
 
 class ChatbotController:
     """
     A controller class to manage the interaction between the user and the e-commerce chatbot.
     """
-
-    def get_response(self, query: str, chat_history: list) -> list:
+    @staticmethod
+    def get_response(query: str, chat_history: list) -> list:
         """
         Generates a response from the e-commerce chatbot and updates the chat history.
 
@@ -15,7 +20,7 @@ class ChatbotController:
                              where each tuple is (user_message, bot_response).
         :return: Updated chat history with the new user query and chatbot response.
         """
-        response = "test response"  # Replace this with actual logic to generate the chatbot response
+        response = OpenAiLLM().get_response(query)
         chat_history.append((query, response))
         return chat_history
 

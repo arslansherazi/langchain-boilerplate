@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "232390d830300e7501b9fb23fc6e9fd1d82d22edae65fe7d92e5e794952811db"
+            "sha256": "7fa2b2c3f23d496845c2ed5a96b59f538fd43f41f9b499feeefb5b32aed7e1e4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -860,11 +860,11 @@
         },
         "langsmith": {
             "hashes": [
-                "sha256:b5c6a1f158abda61600a4a445081ee848b4a28b758d91f2793dc02aeffafcaf1",
-                "sha256:ef8d1d74a2674c514aa429b0171a9fbb661207dc3835142cca0e8f1bf97b26b0"
+                "sha256:20ff0126253a5a1d621635a3bc44ccacc036e855f52185ae983420f14eb6c605",
+                "sha256:cae44a884a4166c4d8b9cc5ff99f5d520337bd90b9dadfe3706ed31415d559a7"
             ],
             "markers": "python_version < '4.0' and python_full_version >= '3.8.1'",
-            "version": "==0.1.99"
+            "version": "==0.1.100"
         },
         "markdown-it-py": {
             "hashes": [
@@ -1134,12 +1134,12 @@
         },
         "openai": {
             "hashes": [
-                "sha256:56fb04105263f79559aff3ceea2e1dd16f8c5385e8238cb66cf0e6888fa8bfcf",
-                "sha256:e38e376efd91e0d4db071e2a6517b6b4cac1c2a6fd63efdc5ec6be10c5967c1b"
+                "sha256:c9d31853b4e0bc2dc8bd08003b462a006035655a701471695d0bfdc08529cde3",
+                "sha256:dc91e0307033a4f94931e5d03cc3b29b9717014ad5e73f9f2051b6cb5eda4d80"
             ],
             "index": "pypi",
             "markers": "python_full_version >= '3.7.1'",
-            "version": "==1.41.1"
+            "version": "==1.42.0"
         },
         "orjson": {
             "hashes": [
@@ -1466,6 +1466,15 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.9.0.post0"
+        },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca",
+                "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==1.0.1"
         },
         "python-multipart": {
             "hashes": [
