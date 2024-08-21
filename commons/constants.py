@@ -1,5 +1,5 @@
 CHATBOT_NAME = "## Costco Assistant"
 USER_QUERY_PLACEHOLDER = "Type your query..."
 SEND_BTN_TEXT = "Send"
-GRADIO_PRIMARY_CSS = ".container {max-width: 100%; margin: 10px;}"
+GRADIO_CSS = "./static/css/chat_window.css"
 GRADIO_TITLE_ELEMENT_ID = "title"

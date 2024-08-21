@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import time
 
 from commons.constants import (
-    CHATBOT_NAME, USER_QUERY_PLACEHOLDER, SEND_BTN_TEXT, GRADIO_PRIMARY_CSS, GRADIO_TITLE_ELEMENT_ID
+    CHATBOT_NAME, USER_QUERY_PLACEHOLDER, SEND_BTN_TEXT, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
 )
 from src.llms.openai import OpenAiLLM
 
@@ -32,19 +32,22 @@ class ChatbotController:
         Initializes and launches the Gradio interface for the e-commerce chatbot.
         The interface includes a chatbot window, a prompt box at the bottom, and a send button.
         """
-        with gr.Blocks(css=GRADIO_PRIMARY_CSS) as demo:
+        with gr.Blocks(css=GRADIO_CSS) as demo:
             gr.Markdown(CHATBOT_NAME, elem_id=GRADIO_TITLE_ELEMENT_ID)
-            chatbot = gr.Chatbot(height=750)
+            chatbot = gr.Chatbot(elem_id="chatbox", height=800)
 
             with gr.Row(visible=True):
-                with gr.Column(scale=10):
+                with gr.Column(scale=3, elem_id="user_input_container"):
                     user_input = gr.Textbox(
                         show_label=False,
                         placeholder=USER_QUERY_PLACEHOLDER,
                         lines=1,
+                        max_lines=1,
+                        autoscroll=False,
+                        elem_id="user_input"
                     )
-                with gr.Column(scale=1, min_width=60):
-                    submit_button = gr.Button(SEND_BTN_TEXT)
+                with gr.Column(scale=1):
+                    submit_button = gr.Button(SEND_BTN_TEXT, elem_id="send_button")
 
             def submit_message(query, chat_history):
                 """

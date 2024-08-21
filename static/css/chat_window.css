@@ -1,0 +1,24 @@
+#chatbox {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#user_input_container {
+    background-color: #e5e5e5;
+    border-radius: 80px;
+}
+
+#user_input {
+    background-color: #e5e5e5;
+    border-radius: 80px;
+}
+
+#send_button {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+footer {
+    display: none !important;
+}
