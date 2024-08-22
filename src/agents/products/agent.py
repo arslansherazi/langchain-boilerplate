@@ -22,3 +22,6 @@ class ProductsAgent:
 
 
         return tools
+
+    def get_agent(self):
+        return self.__agent
