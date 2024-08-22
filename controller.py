@@ -2,9 +2,7 @@ import gradio as gr
 from dotenv import load_dotenv
 import time
 
-from commons.constants import (
-    CHATBOT_NAME, USER_QUERY_PLACEHOLDER, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
-)
+from commons.constants import CHATBOT_NAME, USER_QUERY_PLACEHOLDER, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
 from src.llms.openai import OpenAiLLM
 
 load_dotenv()
