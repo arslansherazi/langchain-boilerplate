@@ -1,7 +1,13 @@
 from enum import Enum
 
 
-class OpenAiModel(Enum):
+class EnumMixin:
+    @classmethod
+    def has_value(cls, value):
+        return any(value == item.value for item in cls)
+
+
+class OpenAiModel(Enum, EnumMixin):
     GPT_35_TURBO = "gpt-3.5-turbo"
 
 

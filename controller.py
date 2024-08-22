@@ -1,9 +1,12 @@
+import sys
+from typing import Any
+
 import gradio as gr
 from dotenv import load_dotenv
 import time
 
 from commons.constants import CHATBOT_NAME, USER_QUERY_PLACEHOLDER, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
-from src.llms.openai import OpenAiLLM
+from commons.factory.llms import llm_factory
 
 load_dotenv()
 
@@ -12,15 +15,17 @@ class ChatbotController:
     """
     A controller class to manage the interaction between the user and the e-commerce chatbot.
     """
-    @staticmethod
-    def get_response_generator(query: str):
+    def __init__(self, _llm_identifier: str, _model_name: str):
+        self.llm = llm_factory(_llm_identifier)(model_name)
+
+    def get_response_generator(self, query: str) -> str:
         """
         Generates a response from the e-commerce chatbot, yielding the response character by character.
 
         :param query: The user's input message.
         :return: A generator yielding each character of the chatbot's response.
         """
-        response = OpenAiLLM().get_response(query)
+        response = self.llm().get_response(query)
         for char in response:
             yield char
             time.sleep(0.03)
@@ -79,4 +84,6 @@ class ChatbotController:
 
 
 if __name__ == '__main__':
-    ChatbotController().run()
+    llm_identifier = sys.argv[0]
+    model_name = sys.argv[1]
+    ChatbotController(llm_identifier, model_name).run()
