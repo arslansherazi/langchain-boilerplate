@@ -1,5 +1,4 @@
 import sys
-from typing import Any
 
 import gradio as gr
 from dotenv import load_dotenv
