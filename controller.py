@@ -1,3 +1,6 @@
+"""
+Chatbot Controller
+"""
 import sys
 
 import gradio as gr
