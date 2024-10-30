@@ -9,37 +9,43 @@ import time
 
 from commons.constants import CHATBOT_NAME, USER_QUERY_PLACEHOLDER, GRADIO_CSS, GRADIO_TITLE_ELEMENT_ID
 from commons.factory.llms import llm_factory
+from src.rag.controller import RagController
 
 load_dotenv()
 
 
 class ChatbotController:
     """
-    A controller class to manage the interaction between the user and the e-commerce chatbot.
+    A controller class to manage the interaction between the user and the chatbot.
     """
     def __init__(self, _llm_identifier: str, _model_name: str):
-        self.llm = llm_factory(_llm_identifier)(model_name)
+        self._llm_identifier = _llm_identifier
+        llm_klass = llm_factory(_llm_identifier)
+        if not llm_klass:
+            raise ValueError(f"Invalid LLM identifier: {llm_identifier}.")
+        self.llm = llm_klass(_model_name)
 
     def get_response_generator(self, query: str) -> str:
         """
-        Generates a response from the e-commerce chatbot, yielding the response character by character.
+        Generates a response from the chatbot, yielding the response character by character.
 
         :param query: The user's input message.
         :return: A generator yielding each character of the chatbot's response.
         """
-        response = self.llm().get_response(query)
+        retriever = RagController(query, self._llm_identifier).get_retriever()
+        response = self.llm.get_response(query, retriever)
         for char in response:
             yield char
             time.sleep(0.03)
 
     def run(self):
         """
-        Initializes and launches the Gradio interface for the e-commerce chatbot.
+        Initializes and launches the Gradio interface for the chatbot.
         The interface includes a chatbot window, a prompt box at the bottom, and a send button.
         """
         with gr.Blocks(css=GRADIO_CSS) as demo:
             gr.Markdown(CHATBOT_NAME, elem_id=GRADIO_TITLE_ELEMENT_ID)
-            chatbot = gr.Chatbot(elem_id="chatbox", height=800)
+            chatbot = gr.Chatbot(elem_id="chatbox", height=450)
 
             with gr.Row(visible=True):
                 with gr.Column():
@@ -86,6 +92,9 @@ class ChatbotController:
 
 
 if __name__ == '__main__':
-    llm_identifier = sys.argv[0]
-    model_name = sys.argv[1]
-    ChatbotController(llm_identifier, model_name).run()
+    try:
+        llm_identifier = sys.argv[1]
+        model_name = sys.argv[2]
+        ChatbotController(llm_identifier, model_name).run()
+    except IndexError:
+        print("Provide the LLM identifier and model name as command line arguments.")
